@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>DayZ Map</title>
+<link rel="canonical" href="http://www.dayztv.com/map/">
+<link href="./map_files/leaflet.css" rel="stylesheet" type="text/css">
+<!--[if lte IE 8]>
+<link href="//www.dayztv.com/map/css/leaflet.ie.css?v=1000258" rel="stylesheet" type="text/css" />
+<![endif]-->
+<link href="./map_files/bootstrap.css" rel="stylesheet" type="text/css">
+<link href="./map_files/map.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" id="fontawesome-css" href="./map_files/fontawesome.css" type="text/css" media="all">
+<link href="./map_files/style.css" rel="stylesheet" type="text/css">
+<link href="./map_files/Icon.Label.css" rel="stylesheet" type="text/css">
+<link href="./map_files/css" rel="stylesheet" type="text/css">
+<script>
+	var dayz_staticUrl = 'http://static.dayzdb.com/';
+	var dayztv_staticUrl = 'http://www.dayztv.com/map/static/';
+	var dayzCurrentUser = { id: 0, name: "", access: 0 };
+</script>
+<script src="./map_files/jquery.min.js"></script>
+ <script type="text/javascript" src="./map_files/jquery.easyModal.js"></script>
+<script src="./map_files/leaflet.js"></script>
+<script src="./map_files/map-chernarusplus.js"></script>
+<script src="./map_files/map.js"></script>
+<script src="./map_files/bootstrap.js"></script>
+<script src="./map_files/Label.js"></script>
+<script src="./map_files/BaseMarkerMethods.js"></script>
+<script src="./map_files/Marker.Label.js"></script>
+<script src="./map_files/CircleMarker.Label.js"></script>
+<script>L.Icon.Default.imagePath = "http://www.dayztv.com/map/img";</script>
+<script src="./map_files/markers"></script>
+<!--[if IE 9]>
+<script src="//www.dayztv.com/map/js/html5shiv.js"></script>
+<![endif]-->
+<script src="./map_files/screenfull.js"></script>
+</head>
+<body class="map">
+<div id="contextLoot" class="dropdown clearfix"></div>
+<div id="mapContainer">
+<div id="map" class="leaflet-container leaflet-fade-anim" tabindex="0"><div class="leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);"><div class="leaflet-objects-pane"><div class="leaflet-shadow-pane  leaflet-zoom-hide"></div><div class="leaflet-overlay-pane"></div><div class="leaflet-popup-pane  leaflet-zoom-hide"></div></div></div><div class="leaflet-control-container"><div class="leaflet-top leaflet-left"></div><div class="leaflet-top leaflet-right"></div><div class="leaflet-bottom leaflet-left"></div><div class="leaflet-bottom leaflet-right"></div></div></div>
+<div class="credits">
+<div id="mapCoords">000 000</div>
+</div>
+<div id="mapControl">
+<div class="btn-group other-group">
+<button data-type="other" data-toggle="button" class="btn btn-inverse iconToggle active"><i class="icon-check"></i> Buildings</button>
+<button data-toggle="dropdown" class="btn btn-inverse dropdown-toggle">
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li><label><input type="checkbox" data-type="civilian" class="iconToggle" checked="checked"> Civilian</label></li>
+<li><label><input type="checkbox" data-type="industrial" class="iconToggle" checked="checked"> Industrial</label></li>
+<li><label><input type="checkbox" data-type="military" class="iconToggle" checked="checked"> Military</label></li>
+<li><label><input type="checkbox" data-type="neutral" class="iconToggle" checked="checked"> Neutral</label></li>
+<li class="divider"></li>
+<li><label><input type="checkbox" data-type="deerstand" class="iconToggle" checked="checked"> Deerstands</label></li>
+<li><label><input type="checkbox" data-type="feedshack" class="iconToggle" checked="checked"> Feedshacks</label></li>
+<li><label><input type="checkbox" data-type="firestation" class="iconToggle" checked="checked"> Fire Station</label></li>
+<li><label><input type="checkbox" data-type="medical" class="iconToggle" checked="checked"> Medical</label></li>
+<li><label><input type="checkbox" data-type="policestation" class="iconToggle" checked="checked"> Police Station</label></li>
+<li><label><input type="checkbox" data-type="supermarket" class="iconToggle" checked="checked"> Supermarkets</label></li>
+ <li class="divider"></li>
+<li><label><input type="checkbox" data-type="fuel" class="iconToggle" checked="checked"> Fuel Pumps</label></li>
+<li><label><input type="checkbox" data-type="pump" class="iconToggle" checked="checked"> Water Pumps</label></li>
+<li class="divider"></li>
+<li><label><input type="checkbox" data-type="player_spawn" class="iconToggle" checked="checked"> Player Spawns</label></li>
+</ul>
+</div>
+<div class="btn-group animals-group">
+<button data-type="animals" data-toggle="button" class="btn btn-inverse iconToggle active"><i class="icon-circle-o"></i> Animals</button>
+<button data-toggle="dropdown" class="btn btn-inverse dropdown-toggle">
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li><label><input type="checkbox" data-type="boar" class="iconToggle" checked="checked"> Boars</label></li>
+<li><label><input type="checkbox" data-type="chicken" class="iconToggle" checked="checked"> Chickens</label></li>
+<li><label><input type="checkbox" data-type="cow" class="iconToggle" checked="checked"> Cows</label></li>
+<li><label><input type="checkbox" data-type="pig" class="iconToggle" checked="checked"> Pigs</label></li>
+<li><label><input type="checkbox" data-type="rabbit" class="iconToggle" checked="checked"> Rabbits</label></li>
+<li><label><input type="checkbox" data-type="wolf" class="iconToggle" checked="checked"> Wolves</label></li>
+</ul>
+</div>
+<div class="btn-group nature-group">
+<button data-type="nature" data-toggle="button" class="btn btn-inverse iconToggle active"><i class="icon-check"></i> Nature</button>
+<button data-toggle="dropdown" class="btn btn-inverse dropdown-toggle">
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li><label><input type="checkbox" data-type="apple" class="iconToggle" checked="checked"> Apple Trees</label></li>
+<li><label><input type="checkbox" data-type="xmastree" class="iconToggle" checked="checked"> Christmas Trees</label></li>
+<li><label><input type="checkbox" data-type="pond" class="iconToggle" checked="checked"> Water Ponds</label></li>
+</ul>
+</div>
+<div class="btn-group helicrash-group">
+<button data-type="helicrash" data-toggle="button" class="btn btn-inverse iconToggle active"><i class="icon-check"></i> Crashsites</button>
+<button data-toggle="dropdown" class="btn btn-inverse dropdown-toggle">
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li><label><input type="checkbox" data-type="helicrash" class="iconToggle" checked="checked"> Heli Crashsites</label></li>
+<li><label><input type="checkbox" data-type="carcrash" class="iconToggle" checked="checked"> Police Cars</label></li>
+<li><label><input type="checkbox" data-type="boatnetting" class="iconToggle" checked="checked"> Boats (Nettings)</label></li>
+</ul>
+</div>
+<div class="btn-group v3s-group">
+<button data-type="v3s" data-toggle="button" class="btn btn-inverse iconToggle active"><i class="icon-check"></i> Vehicles</button>
+<button data-toggle="dropdown" class="btn btn-inverse dropdown-toggle">
+<span class="caret"></span>
+</button>
+<ul class="dropdown-menu">
+<li><label><input type="checkbox" data-type="v3s" class="iconToggle" checked="checked"> V3S Truck</label></li>
+<li><label><input type="checkbox" data-type="offroad" class="iconToggle" checked="checked"> Hatchback Offroad</label></li>
+<li><label><input type="checkbox" data-type="volga" class="iconToggle" checked="checked"> Volga</label></li>
+<li><label><input type="checkbox" data-type="transit_bus" class="iconToggle" checked="checked"> Transit Bus</label></li>
+</ul>
+</div> 
+<div class="btn-group">
+<button data-type="label" data-toggle="button" class="btn btn-inverse iconToggle active"><i class="icon-check"></i> Towns</button>
+</div>
+</div>
+</div>
+</body></html>
