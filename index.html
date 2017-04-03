@@ -31,6 +31,13 @@
 <script src="./map_files/CircleMarker.Label.js"></script>
 <script>L.Icon.Default.imagePath = "http://www.dayztv.com/map/img";</script>
 <script src="./map_files/markers"></script>
+<script>dzMap.buildings.push(
+	{id:"Player",lng:14.0,lat:10.0,t:"player_spawn",s:0,b:""},
+	{id:"Soldier",lng:14.3,lat:11.0,t:"player_spawn",s:3,b:""},
+	{id:"Soldier",lng:15.0,lat:12.0,t:"player_spawn",s:3,b:""},
+	{id:"Zombo",lng:15.0,lat:13.0,t:"player_spawn",s:3,b:""}
+	
+);</script>
 <!--[if IE 9]>
 <script src="//www.dayztv.com/map/js/html5shiv.js"></script>
 <![endif]-->
@@ -42,10 +49,9 @@
 <div id="map" class="leaflet-container leaflet-fade-anim" tabindex="0">
 <div class="leaflet-map-pane" style="transform: translate3d(0px, 0px, 0px);">
 <div class="leaflet-objects-pane">
-<div class="leaflet-shadow-pane  leaflet-zoom-hide"></div>
+<div class="leaflet-shadow-pane leaflet-zoom-hide"></div>
 <div class="leaflet-overlay-pane"></div>
-<div class="leaflet-popup-pane  leaflet-zoom-hide"></div>
-<img src="http://savepic.ru/13430649.png">
+<div class="leaflet-popup-pane leaflet-zoom-hide"></div>
 </div></div>
 <div class="leaflet-control-container">
 <div class="leaflet-top leaflet-left"></div>
